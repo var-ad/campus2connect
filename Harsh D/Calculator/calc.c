@@ -1,25 +1,8 @@
 #include <stdio.h>
 
-void calculate() {
-    float num1, num2, ans;
-    char ch;
+void calculate(float num1 , float num2, char ch) {
 
-    printf("Enter first number: ");
-    if (scanf("%f", &num1) != 1) {
-        printf("Invalid input. Please enter a number.\n");
-        while(getchar() != '\n');
-        return;
-    }
-
-    printf("Enter second number: ");
-    if (scanf("%f", &num2) != 1) {
-        printf("Invalid input. Please enter a number.\n");
-        while(getchar() != '\n');
-        return;
-    }
-
-    printf("Enter operation (+, -, *, /): ");
-    scanf(" %c", &ch);
+    float ans;
 
     switch (ch) {
         case '+':
@@ -44,20 +27,42 @@ void calculate() {
             break;
         default:
             printf("Invalid operation! Please enter one of valid operator\n");
+            break;
     }
-}
 
+    return;
+}
 
 int main() {
     char ch;
 
-    void (*calculate_pointer)();
+    void (*calculate_pointer)(float , float, char);
     calculate_pointer = calculate;
+
+    float num1, num2, ans;
 
     printf("Welcome to the Calculator Program!\n");
 
     do {
-        calculate_pointer();
+
+        printf("Enter first number: ");
+        if (scanf("%f", &num1) != 1) {
+            printf("Invalid input. Please enter a number.\n");
+            while(getchar() != '\n');
+            return -1;
+        }
+
+        printf("Enter second number: ");
+        if (scanf("%f", &num2) != 1) {
+            printf("Invalid input. Please enter a number.\n");
+            while(getchar() != '\n');
+            return -1;
+        }
+
+        printf("Enter operation (+, -, *, /): ");
+        scanf(" %c", &ch);
+
+        calculate_pointer(num1, num2, ch);
 
         printf("Would you like to continue? (y/n): ");
         scanf(" %c", &ch);
