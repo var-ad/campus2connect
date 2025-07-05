@@ -1,18 +1,14 @@
-#define MIN(a,c) ((a) > (c) ? (c) : (a))
-#include<stdio.h>
+#include <stdio.h>
 
-#if 10 > 20
-     printf("sdfsd");
+#define LENGTH 10
+
+int main()
+{
+#if defined(LENGTH)
+    printf("LENGTH is defined as %d\n", LENGTH);
 #else
-    printf("sdfsd hey");
+    printf("LENGTH is not defined\n");
 #endif
 
-void main()
-{
-    #if 10 < 20
-        printf("werftwrf");
-    #else
-        printf("hfghfg");
-    #endif
-    printf("%d", sizeof("bmw")); 
+    return 0;
 }
