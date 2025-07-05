@@ -53,21 +53,27 @@ void rq_display(rq_t *q) {
 }
 
 int main() {
-    rq_t queue;
-    rq_init(&queue);
+    rq_t q;
+    rq_init(&q);
+    int ch, val;
 
-    rq_enqueue(&queue, 10);
-    rq_enqueue(&queue, 20);
-    rq_enqueue(&queue, 30);
-    rq_display(&queue);
-
-    int val;
-    if (rq_dequeue(&queue, &val) == 0) {
-        printf("deque: %d\n", val);
-    } else {
-        printf("deque failed\n");
+    while (1) {
+        printf("\n1.enque  2.deque  3.display  4.exit\n> ");
+        scanf("%d", &ch);
+        if (ch == 1) {
+            printf("value is : ");
+            scanf("%d", &val);
+            printf(rq_enqueue(&q, val) ? "if queue full\n" : " else enque\n");
+        } else if (ch == 2) {
+            printf(rq_dequeue(&q, &val) ? "if queue empty\n" : (printf("else deque : %d\n", val), ""));
+        } else if (ch == 3) {
+            rq_display(&q);
+        } else if (ch == 4) {
+            break;
+        } else {
+            printf("Invalid choice\n");
+        }
     }
 
-    rq_display(&queue);
     return 0;
 }
