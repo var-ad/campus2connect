@@ -90,17 +90,33 @@ int main()
 
     rq_t q;
     rq_init(&q);
-    rq_enqueue(&q, 3);
-    rq_enqueue(&q, 5);
-    rq_enqueue(&q, 6);
 
-    rq_dequeue(&q);  // 3 dequeued
+    int choice;
+    int value;
 
-    rq_enqueue(&q, 10);
+    do
+    {
+        printf("1.Enqueue\n2.Dequeue\n0.Exit\n");
+        printf("enter the choice:\n");
+        scanf("%d/n ", &choice);
 
-    rq_dequeue(&q); // 5
-    rq_dequeue(&q); // 6
-    rq_dequeue(&q); // 10
-    rq_dequeue(&q);// empty
-    rq_dequeue(&q);//empty
+        switch (choice)
+        {
+        case 1:
+            printf("enter value to enqueue:\n");
+            scanf("%d", &value);
+            rq_enqueue(&q, value);
+            break;
+
+        case 2:
+            printf("-----Dequeue------\n");
+            rq_dequeue(&q); // it will remove the first in value
+            break;
+        case 0:
+            printf("exiting......\n");
+            exit(0);
+            break;
+        }
+
+    } while (choice != 0);
 }
